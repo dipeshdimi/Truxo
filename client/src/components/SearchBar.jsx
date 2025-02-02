@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+
 import StudentList from "./StudentList";
+import { HOST } from "../constants/constants";
+
 import { FcSearch } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
 
@@ -22,7 +25,7 @@ const SearchBar = ({ onSelectStudent }) => {
 
     const fetchStudents = async () => {
       const response = await fetch(
-        `http://localhost:8000/api/v1/students/search?query=${query}&page=${currentPage}&limit=${studentsPerPage}`
+        `${HOST}/api/v1/students?search=${query}&page=${currentPage}&limit=${studentsPerPage}`
       );
       const data = await response.json();
       setResults(data.students);
@@ -65,28 +68,28 @@ const SearchBar = ({ onSelectStudent }) => {
 
       {totalPages > 1 && (
         <div className="flex items-center gap-6 mt-6 bg-gray-200 w-fit mx-auto p-3 rounded-xl">
-        <button
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage <= 1}
-          aria-label="Previous page"
-          className="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-white font-medium rounded-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out"
-        >
-          &lt;
-        </button>
-      
-        <span className="font-semibold text-[14px] text-gray-600">
-          Page {currentPage} of {totalPages}
-        </span>
-      
-        <button
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage >= totalPages}
-          aria-label="Next page"
-          className="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-white font-medium rounded-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out"
-        >
-          &gt;
-        </button>
-      </div>      
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage <= 1}
+            aria-label="Previous page"
+            className="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-white font-medium rounded-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out"
+          >
+            &lt;
+          </button>
+
+          <span className="font-semibold text-[14px] text-gray-600">
+            Page {currentPage} of {totalPages}
+          </span>
+
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage >= totalPages}
+            aria-label="Next page"
+            className="px-2 py-1 bg-amber-400 hover:bg-amber-500 text-white font-medium rounded-lg disabled:bg-gray-300 disabled:text-gray-500 disabled:cursor-not-allowed transition duration-300 ease-in-out"
+          >
+            &gt;
+          </button>
+        </div>
       )}
     </div>
   );
