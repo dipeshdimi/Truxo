@@ -41,6 +41,8 @@ StudentList.propTypes = {
   results: PropTypes.array.isRequired,
   query: PropTypes.string.isRequired,
   onSelect: PropTypes.func.isRequired,
+  prevStudents: PropTypes.array.isRequired,
+  setPrevStudents: PropTypes.func.isRequired,
 };
 
 export default StudentList;

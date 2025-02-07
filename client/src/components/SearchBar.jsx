@@ -97,6 +97,7 @@ const SearchBar = ({ onSelectStudent, prevStudents, setPrevStudents }) => {
 
 SearchBar.propTypes = {
   onSelectStudent: PropTypes.func.isRequired,
+  prevStudents: PropTypes.array.isRequired,
   setPrevStudents: PropTypes.func.isRequired,
 };
 
