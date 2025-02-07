@@ -7,7 +7,7 @@ import { HOST } from "../constants/constants";
 import { FcSearch } from "react-icons/fc";
 import { MdCancel } from "react-icons/md";
 
-const SearchBar = ({ onSelectStudent }) => {
+const SearchBar = ({ onSelectStudent, prevStudents, setPrevStudents }) => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -64,7 +64,7 @@ const SearchBar = ({ onSelectStudent }) => {
         }
       </div>
 
-      <StudentList results={results} query={query} onSelect={onSelectStudent} />
+      <StudentList results={results} query={query} onSelect={onSelectStudent}prevStudents={prevStudents} setPrevStudents={setPrevStudents} />
 
       {totalPages > 1 && (
         <div className="flex items-center gap-6 mt-6 bg-gray-200 w-fit mx-auto p-3 rounded-xl">
@@ -97,6 +97,7 @@ const SearchBar = ({ onSelectStudent }) => {
 
 SearchBar.propTypes = {
   onSelectStudent: PropTypes.func.isRequired,
+  setPrevStudents: PropTypes.func.isRequired,
 };
 
 export default SearchBar;

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const StudentList = ({ results, query, onSelect }) => {
+const StudentList = ({ results, query, onSelect, prevStudents, setPrevStudents }) => {
   const highlightMatch = (name) => {
     const parts = name.split(new RegExp(`(${query})`, "gi"));
     return parts.map((part, index) =>
@@ -21,7 +21,13 @@ const StudentList = ({ results, query, onSelect }) => {
           <li
             key={student.rollNumber}
             className="p-3 text-gray-800 hover:bg-blue-500 hover:text-white cursor-pointer transition-all duration-300 select-none"
-            onClick={() => onSelect(student)}
+            onClick={() => {
+              onSelect(student);
+              const tempPrev = prevStudents;
+              console.log(prevStudents)
+              tempPrev.push(student);
+              setPrevStudents(tempPrev);
+            }}
           >
             {highlightMatch(student.name)}
           </li>
