@@ -54,7 +54,7 @@ const SearchBar = ({ onSelectStudent }) => {
         />
         {query.length > 0 &&
           <MdCancel
-            className="text-2xl text-red-700 hover:text-red-600 shrink-0"
+            className="text-2xl text-red-700 hover:text-red-600 shrink-0 cursor-pointer"
             onClick={() => {
               setQuery("");
               setResults([]);
